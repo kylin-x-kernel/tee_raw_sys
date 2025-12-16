@@ -35,10 +35,11 @@ pub struct utee_params {
 }
 
 #[repr(C)]
+#[derive(Debug, Clone, Copy, Default)]
 pub struct utee_attribute {
-    a: u64,
-    b: u64,
-    attribute_id: u32,
+    pub a: u64,
+    pub b: u64,
+    pub attribute_id: u32,
 }
 
 #[repr(C)]
