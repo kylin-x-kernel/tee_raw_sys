@@ -294,7 +294,8 @@ pub const TEE_ECC_CURVE_NIST_P224: u32 = 0x00000002;
 pub const TEE_ECC_CURVE_NIST_P256: u32 = 0x00000003;
 pub const TEE_ECC_CURVE_NIST_P384: u32 = 0x00000004;
 pub const TEE_ECC_CURVE_NIST_P521: u32 = 0x00000005;
-pub const TEE_ECC_CURVE_SM2: u32 = 0x00000300;
+pub const TEE_ECC_CURVE_25519: u32 = 0x00000300;
+pub const TEE_ECC_CURVE_SM2: u32 = 0x00000400;
 
 // Panicked Functions Identification
 // TA Interface
