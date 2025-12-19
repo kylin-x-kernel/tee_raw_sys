@@ -168,6 +168,7 @@ pub struct TEE_OperationInfoMultiple {
 
 // Time & Date API
 
+#[derive(Copy, Clone)]
 #[repr(C)]
 pub struct TeeTime {
     pub seconds: u32,
