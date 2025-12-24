@@ -12,7 +12,7 @@ use core::ffi::*;
 pub type TEE_Result = u32;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Default, Debug, PartialEq)]
 pub struct TEE_UUID {
     pub timeLow: u32,
     pub timeMid: u16,
@@ -90,6 +90,7 @@ pub type TEE_ObjectType = u32;
 
 #[repr(C)]
 pub struct TEE_ObjectInfo {
+    pub objectId: u32,
     pub objectType: u32,
     pub objectSize: u32,
     pub maxObjectSize: u32,
