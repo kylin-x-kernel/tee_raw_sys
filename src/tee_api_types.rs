@@ -126,6 +126,7 @@ pub struct TEE_Attribute {
 
 // Reserve the GP 1.1.1 type
 #[repr(C)]
+#[derive(PartialEq, Eq, PartialOrd, Ord, Hash, Clone, Copy)]
 pub enum TEE_OperationMode {
     TEE_MODE_ENCRYPT,
     TEE_MODE_DECRYPT,
