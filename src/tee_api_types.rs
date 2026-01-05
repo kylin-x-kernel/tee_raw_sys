@@ -89,6 +89,7 @@ pub type TEE_OperationHandle = *mut __TEE_OperationHandle;
 pub type TEE_ObjectType = u32;
 
 #[repr(C)]
+#[derive(Debug)]
 pub struct TEE_ObjectInfo {
     pub objectId: u32,
     pub objectType: u32,
