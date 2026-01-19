@@ -4,9 +4,9 @@
 //
 // This file has been modified by KylinSoft on 2025.
 
+use core::{ffi::*, fmt::Debug, fmt};
 
 use crate::libc_compat::size_t;
-use core::ffi::*;
 
 #[allow(non_camel_case_types)]
 pub type TEE_Result = u32;
@@ -89,7 +89,6 @@ pub type TEE_OperationHandle = *mut __TEE_OperationHandle;
 pub type TEE_ObjectType = u32;
 
 #[repr(C)]
-#[derive(Debug)]
 pub struct TEE_ObjectInfo {
     pub objectId: u32,
     pub objectType: u32,
@@ -101,6 +100,23 @@ pub struct TEE_ObjectInfo {
     pub handleFlags: u32,
 }
 
+impl Debug for TEE_ObjectInfo {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(
+            f,
+            "TEE_ObjectInfo{{objectId: {:#010X?}, objectType: {:#010X?}, objectSize: {:#010X?}, maxObjectSize: \
+             {:#010X?}, objectUsage: {:#010X?}, dataSize: {:#010X?}, dataPosition: {:#010X?}, handleFlags: {:#010X?}}}",
+            self.objectId,
+            self.objectType,
+            self.objectSize,
+            self.maxObjectSize,
+            self.objectUsage,
+            self.dataSize,
+            self.dataPosition,
+            self.handleFlags
+        )
+    }
+}
 // Reserve the GP 1.1.1 type
 #[repr(C)]
 pub enum TEE_Whence {
