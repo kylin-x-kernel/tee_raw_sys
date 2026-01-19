@@ -3,8 +3,8 @@
 // See LICENSES for license details.
 //
 
-
 use super::*;
+use core::fmt::{self, Debug};
 
 #[repr(C)]
 pub enum utee_time_category {
@@ -43,26 +43,30 @@ pub struct utee_attribute {
 }
 
 #[repr(C)]
+#[derive(Clone, Copy, Default)]
 pub struct utee_object_info {
     pub obj_type: u32,
-	pub obj_size: u32,
-	pub max_obj_size: u32,
-	pub obj_usage: u32,
-	pub data_size: u32,
-	pub data_pos: u32,
-	pub handle_flags: u32,
+    pub obj_size: u32,
+    pub max_obj_size: u32,
+    pub obj_usage: u32,
+    pub data_size: u32,
+    pub data_pos: u32,
+    pub handle_flags: u32,
 }
 
-impl Default for utee_object_info {
-    fn default() -> Self {
-        utee_object_info {
-            obj_type: 0,
-            obj_size: 0,
-            max_obj_size: 0,
-            obj_usage: 0,
-            data_size: 0,
-            data_pos: 0,
-            handle_flags: 0,
-        }
+impl Debug for utee_object_info {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(
+            f,
+            "obj_type: {:#010X}, obj_size: {:#010X}, max_obj_size: {:#010X}, obj_usage: {:#010X}, \
+             data_size: {:#010X}, data_pos: {:#010X}, handle_flags: {:#010X}",
+            self.obj_type,
+            self.obj_size,
+            self.max_obj_size,
+            self.obj_usage,
+            self.data_size,
+            self.data_pos,
+            self.handle_flags
+        )
     }
 }
