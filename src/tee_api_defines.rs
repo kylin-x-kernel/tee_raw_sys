@@ -214,7 +214,55 @@ pub const TEE_ALG_ECDH_P384: u32 = 0x80004042;
 pub const TEE_ALG_ECDH_P521: u32 = 0x80005042;
 pub const TEE_ALG_SM2_PKE: u32 = 0x80000045;
 pub const TEE_ALG_SM3: u32 = 0x50000007;
+pub const TEE_ALG_HKDF: u32 = 0x80000047;
+pub const TEE_ALG_ED25519: u32 = 0x70006043;
+pub const TEE_ALG_X25519: u32 = 0x80000044;
 pub const TEE_ALG_ILLEGAL_VALUE: u32 = 0xEFFFFFFF;
+
+/* TEE_ALG_ECDSA_P* and TEE_ALG_ECDH_P* are deprecated */
+pub const TEE_ALG_ECDH_DERIVE_SHARED_SECRET: u32 = 0x80000042;
+pub const TEE_ALG_ECDSA_SHA1: u32 = 0x70001042;
+pub const TEE_ALG_ECDSA_SHA224: u32 = 0x70002042;
+pub const TEE_ALG_ECDSA_SHA256: u32 = 0x70003042;
+pub const TEE_ALG_ECDSA_SHA384: u32 = 0x70004042;
+pub const TEE_ALG_ECDSA_SHA512: u32 = 0x70005042;
+
+/*
+ * Copied from TEE Internal API specificaion v1.0 table 6-9 "Structure of
+ * Algorithm Identifier".
+ */
+pub const TEE_MAIN_ALGO_MD5: u32 = 0x01;
+pub const TEE_MAIN_ALGO_SHA1: u32 = 0x02;
+pub const TEE_MAIN_ALGO_SHA224: u32 = 0x03;
+pub const TEE_MAIN_ALGO_SHA256: u32 = 0x04;
+pub const TEE_MAIN_ALGO_SHA384: u32 = 0x05;
+pub const TEE_MAIN_ALGO_SHA512: u32 = 0x06;
+pub const TEE_MAIN_ALGO_SM3: u32 = 0x07;
+pub const TEE_MAIN_ALGO_SHA3_224: u32 = 0x08;
+pub const TEE_MAIN_ALGO_SHA3_256: u32 = 0x09;
+pub const TEE_MAIN_ALGO_SHA3_384: u32 = 0x0A;
+pub const TEE_MAIN_ALGO_SHA3_512: u32 = 0x0B;
+pub const TEE_MAIN_ALGO_AES: u32 = 0x10;
+pub const TEE_MAIN_ALGO_DES: u32 = 0x11;
+pub const TEE_MAIN_ALGO_DES2: u32 = 0x12;
+pub const TEE_MAIN_ALGO_DES3: u32 = 0x13;
+pub const TEE_MAIN_ALGO_SM4: u32 = 0x14; /* Not in v1.2, extrapolated */
+pub const TEE_MAIN_ALGO_RSA: u32 = 0x30;
+pub const TEE_MAIN_ALGO_DSA: u32 = 0x31;
+pub const TEE_MAIN_ALGO_DH: u32 = 0x32;
+pub const TEE_MAIN_ALGO_ECDSA: u32 = 0x41;
+pub const TEE_MAIN_ALGO_ECDH: u32 = 0x42;
+pub const TEE_MAIN_ALGO_ED25519: u32 = 0x43;
+pub const TEE_MAIN_ALGO_X25519: u32 = 0x44; /* Not in v1.2 spec */
+pub const TEE_MAIN_ALGO_SM2_DSA_SM3: u32 = 0x45; /* Not in v1.2 spec */
+pub const TEE_MAIN_ALGO_SM2_KEP: u32 = 0x46; /* Not in v1.2 spec */
+pub const TEE_MAIN_ALGO_SM2_PKE: u32 = 0x47; /* Not in v1.2 spec */
+pub const TEE_MAIN_ALGO_HKDF: u32 = 0xC0; /* OP-TEE extension */
+pub const TEE_MAIN_ALGO_CONCAT_KDF: u32 = 0xC1;
+pub const TEE_MAIN_ALGO_PBKDF2: u32 = 0xC2; /* OP-TEE extension */
+pub const TEE_MAIN_ALGO_SHAKE128: u32 = 0xC3; /* OP-TEE extension */
+pub const TEE_MAIN_ALGO_SHAKE256: u32 = 0xC4; /* OP-TEE extension */
+pub const TEE_MAIN_ALGO_X448: u32 = 0x49;
 
 // Object Types
 pub const TEE_TYPE_AES: u32 = 0xA0000010;
@@ -228,6 +276,10 @@ pub const TEE_TYPE_HMAC_SHA256: u32 = 0xA0000004;
 pub const TEE_TYPE_HMAC_SHA384: u32 = 0xA0000005;
 pub const TEE_TYPE_HMAC_SHA512: u32 = 0xA0000006;
 pub const TEE_TYPE_HMAC_SM3: u32 = 0xA0000007;
+pub const TEE_TYPE_HMAC_SHA3_224: u32 = 0xA0000008;
+pub const TEE_TYPE_HMAC_SHA3_256: u32 = 0xA0000009;
+pub const TEE_TYPE_HMAC_SHA3_384: u32 = 0xA000000A;
+pub const TEE_TYPE_HMAC_SHA3_512: u32 = 0xA000000B;
 pub const TEE_TYPE_RSA_PUBLIC_KEY: u32 = 0xA0000030;
 pub const TEE_TYPE_RSA_KEYPAIR: u32 = 0xA1000030;
 pub const TEE_TYPE_DSA_PUBLIC_KEY: u32 = 0xA0000031;
