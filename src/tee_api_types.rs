@@ -27,7 +27,7 @@ pub struct TEE_Identity {
     pub uuid: TEE_UUID,
 }
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Default)]
 #[repr(C)]
 pub struct Memref {
     pub buffer: *mut c_void,
@@ -132,11 +132,28 @@ pub union content {
     pub value: Value,
 }
 
+impl Default for content {
+    fn default() -> Self {
+        content {
+            memref: Memref::default(),
+        }
+    }
+}
+
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct TEE_Attribute {
     pub attributeID: u32,
     pub content: content,
+}
+
+impl Default for TEE_Attribute {
+    fn default() -> Self {
+        TEE_Attribute {
+            attributeID: 0,
+            content: content::default(),
+        }
+    }
 }
 
 // Cryptographic Operations API
