@@ -35,11 +35,23 @@ pub struct utee_params {
 }
 
 #[repr(C)]
-#[derive(Debug, Clone, Copy, Default)]
+#[derive(Clone, Copy, Default)]
 pub struct utee_attribute {
     pub a: u64,
     pub b: u64,
     pub attribute_id: u32,
+}
+
+impl Debug for utee_attribute {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        unsafe {
+        if self.attribute_id & TEE_ATTR_FLAG_VALUE != 0 {
+            write!(f, "utee_attribute{{a: {:#010X?}, b: {:#010X?}, attribute_id: {:#010X?}}}", self.a, self.b, self.attribute_id)
+            } else {
+                write!(f, "utee_attribute{{a: {:#010X?}, b: {:#010X?}, attribute_id: {:#010X?}}}", self.a, self.b, self.attribute_id)
+            }
+        }
+    }
 }
 
 #[repr(C)]

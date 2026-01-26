@@ -4,8 +4,9 @@
 //
 // This file has been modified by KylinSoft on 2025.
 
-use core::{ffi::*, fmt::Debug, fmt};
+use core::{ffi::*, fmt, fmt::Debug};
 
+use super::TEE_ATTR_FLAG_VALUE;
 use crate::libc_compat::size_t;
 
 #[allow(non_camel_case_types)]
@@ -104,8 +105,9 @@ impl Debug for TEE_ObjectInfo {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(
             f,
-            "TEE_ObjectInfo{{objectId: {:#010X?}, objectType: {:#010X?}, objectSize: {:#010X?}, maxObjectSize: \
-             {:#010X?}, objectUsage: {:#010X?}, dataSize: {:#010X?}, dataPosition: {:#010X?}, handleFlags: {:#010X?}}}",
+            "TEE_ObjectInfo{{objectId: {:#010X?}, objectType: {:#010X?}, objectSize: {:#010X?}, \
+             maxObjectSize: {:#010X?}, objectUsage: {:#010X?}, dataSize: {:#010X?}, dataPosition: \
+             {:#010X?}, handleFlags: {:#010X?}}}",
             self.objectId,
             self.objectType,
             self.objectSize,
@@ -156,11 +158,33 @@ impl Default for TEE_Attribute {
     }
 }
 
+impl Debug for TEE_Attribute {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        unsafe {
+            if self.attributeID & TEE_ATTR_FLAG_VALUE != 0 {
+                write!(
+                    f,
+                    "TEE_Attribute{{attributeID: {:#010X?}, content: value: a={:#010X?}, \
+                     b={:#010X?}}}",
+                    self.attributeID, self.content.value.a, self.content.value.b
+                )
+            } else {
+                write!(
+                    f,
+                    "TEE_Attribute{{attributeID: {:#010X?}, content: memref: {:#010X?}, \
+                     {:#010X?}}}",
+                    self.attributeID, self.content.memref.buffer, self.content.memref.size
+                )
+            }
+        }
+    }
+}
+
 // Cryptographic Operations API
 
 // Reserve the GP 1.1.1 type
 #[repr(C)]
-#[derive(PartialEq, Eq, PartialOrd, Ord, Hash, Clone, Copy)]
+#[derive(PartialEq, Eq, PartialOrd, Ord, Hash, Clone, Copy, Debug)]
 pub enum TEE_OperationMode {
     TEE_MODE_ENCRYPT,
     TEE_MODE_DECRYPT,
